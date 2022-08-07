@@ -1,15 +1,14 @@
 import {makeAutoObservable}from "mobx"
-
-export default class PostNetwork {
+export default class PostData {
     constructor() {
         this._users = [
-            {id: 1, username: 'It is me', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'},
-            {id: 2, username: 'dad', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'},
-            {id: 3, username: 'mam', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'},
-            {id: 4, username: 'bro', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'},
-            {id: 5, username: 'sis', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'}
+          {id: 1, username: 'It is me', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'},
+          {id: 2, username: 'dad', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'},
+          {id: 3, username: 'mam', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'},
+          {id: 4, username: 'bro', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'},
+          {id: 5, username: 'sis', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'}
         ]
-        this._posts = [
+        this._post = [
             {id: 1, content: "Hello word", createdAt: '2022-08-01 14:17', picture: 'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg'},
             {id: 2, content: "Hello dad", createdAt: '2022-08-02 14:17', picture: 'https://s1.1zoom.ru/b4344/471/Owls_Birds_Glance_537043_2560x1440.jpg'},
             {id: 3, content: "Hello mam", createdAt: '2022-08-03 14:17', picture: 'https://img3.goodfon.ru/original/2048x1365/5/ce/ptica-polyarnaya-belaya-sova-91.jpg'},
@@ -32,6 +31,7 @@ export default class PostNetwork {
     }
 
     get users() {
-      return this.users
+      return this._users
     }
+    
 }

@@ -1,7 +1,7 @@
-import Auth from "./pages/Auth.js"
-import PostPage from "./pages/PostPage"
-import UserPage from "./pages/UserPage"
-import { USER_ROUTE, POSTS_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "./utils/consts" 
+import Auth from "../pages/Auth.js"
+import PostPage from "../pages/PostPage"
+import UserPage from "../pages/UserPage"
+import { USER_ROUTE, POSTS_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts" 
 
 export const authRoutes = [
     {
