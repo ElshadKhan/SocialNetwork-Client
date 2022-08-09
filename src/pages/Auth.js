@@ -1,14 +1,40 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
+import { observer } from "mobx-react-lite";
 import { Container, Form } from "react-bootstrap";
-import { NavLink, useLocation } from "react-router-dom";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
+import { NavLink, useLocation, useHistory } from "react-router-dom";
+import { LOGIN_ROUTE, POSTS_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
+import { login, registration } from "../http/userApi.js";
+import { Context } from "../index";
 
-const Auth = () => {
+const Auth = observer( () => {
+  const {user} = useContext(Context)
   const location = useLocation();
+  const history = useHistory();
   const isLogin = location.pathname === LOGIN_ROUTE;
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
+
+
+  const click = async () => {
+      try {
+          let data;
+          if (isLogin) {
+              data = await login(email, password) 
+          } else {
+              data = await registration(email, password, username)
+          }
+          user.setUser(user)
+          user.setIsAuth(true)
+          history.push(POSTS_ROUTE)
+      } catch (error) {
+          alert(error.response.data.message)
+      }
+      
+  }
+
   return (
     <Container
       className="d-flex justify-content-center align-items-center"
@@ -18,9 +44,9 @@ const Auth = () => {
         <h2 className="m-auto">{isLogin ? "Авторизация" : "Регистрация"}</h2>
         {isLogin ? 
         <Form className="d-flex flex-column">
-          <Form.Control className="mt-3" placeholder="Введите ваш email..." />
-          <Form.Control className="mt-3" placeholder="Введите ваш пароль..." />
-          <Button className="mt-3 align-self-end" variant="outline-success">
+          <Form.Control className="mt-3" placeholder="Введите ваш email..." value={email} onChange={e => setEmail(e.target.value)}/>
+          <Form.Control className="mt-3" placeholder="Введите ваш пароль..." value={password} onChange={e => setPassword(e.target.value)} type="password"/>
+          <Button className="mt-3 align-self-end" variant="outline-success" onClick={click}>
               Войти
           </Button>
           <div>
@@ -30,10 +56,10 @@ const Auth = () => {
         </Form>
         :
         <Form className="d-flex flex-column">
-          <Form.Control className="mt-3" placeholder="Введите ваш email..." />
-          <Form.Control className="mt-3" placeholder="Введите ваш пароль..." />
-          <Form.Control className="mt-3" placeholder="Введите ваш login..." />
-          <Button className="mt-3 align-self-end" variant="outline-success">
+          <Form.Control className="mt-3" placeholder="Введите ваш email..." value={email} onChange={e => setEmail(e.target.value)}/>
+          <Form.Control className="mt-3" placeholder="Введите ваш пароль..." value={password} onChange={e => setPassword(e.target.value)} type="password"/>
+          <Form.Control className="mt-3" placeholder="Введите ваш login..." value={username} onChange={e => setUsername(e.target.value)}/>
+          <Button className="mt-3 align-self-end" variant="outline-success" onClick={click}>
             Регистрация
           </Button>
           <div>
@@ -45,6 +71,6 @@ const Auth = () => {
       </Card>
     </Container>
   );
-};
+});
 
 export default Auth;

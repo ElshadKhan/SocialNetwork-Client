@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import { Context } from '../index';
 import { authRoutes, publicRoutes } from '../routes/routes';
-import { REGISTRATION_ROUTE } from '../utils/consts.js';
+import { LOGIN_ROUTE } from '../utils/consts.js';
+
 const AppRouter = () =>  {
     const {user} = useContext(Context)
     return (
@@ -13,7 +14,7 @@ const AppRouter = () =>  {
             {user.isAuth === true && authRoutes.map(({path, Component}) => 
                <Route key={path} path={path} component={Component} exact/>          
             )}
-            <Redirect to={REGISTRATION_ROUTE}/>
+            <Redirect to={LOGIN_ROUTE}/>
         </Switch>
     );
 };

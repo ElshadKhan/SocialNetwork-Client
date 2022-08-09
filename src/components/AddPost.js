@@ -1,15 +1,6 @@
 import { observer } from "mobx-react-lite";
-import React, { useContext, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Dropdown,
-  ListGroup,
-  Row,
-} from "react-bootstrap";
-import { Context } from "../index";
+import React, { useState } from "react";
+import { Button, Container} from "react-bootstrap";
 import CreatePost from "../modals/CreatePost";
 
 const AddPost = observer(() => {

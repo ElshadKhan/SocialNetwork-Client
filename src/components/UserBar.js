@@ -1,18 +1,12 @@
 import { observer } from "mobx-react-lite";
-import React, { useContext } from "react";
+import React from "react";
 import {
-  Button,
   Card,
-  Col,
-  Container,
-  Dropdown,
-  ListGroup,
-  Row,
+  Container
 } from "react-bootstrap";
-import { Context } from "../index";
+
 
 const UserBar = observer(() => {
-  const { post } = useContext(Context);
   return (
     <Container>
       <Card style={{ width: "18rem" }}>

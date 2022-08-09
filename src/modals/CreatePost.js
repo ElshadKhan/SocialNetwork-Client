@@ -1,14 +1,27 @@
+import { observer } from "mobx-react-lite";
 import React, { useContext, useState } from "react";
 import { Button,  Modal, Form } from "react-bootstrap";
 import { Context } from "..";
+import { createPost } from "../http/postApi";
 
-const CreatePost = ({show, onHide}) => {
+const CreatePost = observer( ({show, onHide}) => {
   const {post} = useContext(Context)
+  const [file, setFile] = useState(null)
+  const [text, setText] = useState('')
+  const [username, setUsername] = useState(null)
   const [info, setInfo] = useState([])
 
-  const addInfo = () => {
-    setInfo( [...info, {}])
+  const selectFile = e => {
+    setFile(e.target.files[0])
   }
+
+  const addInfo = () => {
+      const formData = new FormData()
+      formData.append('content', text)
+      formData.append('picture', file)
+      createPost(formData).then(data => onHide())
+  }
+
 
   return (
     <Modal show={show} onHide={onHide}>
@@ -17,11 +30,13 @@ const CreatePost = ({show, onHide}) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" 
+            controlId="exampleForm.ControlInput1">
               <Form.Label>Фотография</Form.Label>
               <Form.Control
                 type="file"
-                placeholder="Загрузите фотографию"
+                onChange={selectFile}
+                placeholder="text"
                 autoFocus
               />
             </Form.Group>
@@ -30,7 +45,11 @@ const CreatePost = ({show, onHide}) => {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Описание к фото</Form.Label>
-              <Form.Control as="textarea" rows={2} />
+              <Form.Control 
+              as="textarea" 
+              value={text} 
+              onChange={e => setText(e.target.value)} 
+              rows={2} />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -38,12 +57,12 @@ const CreatePost = ({show, onHide}) => {
           <Button variant="secondary" onClick={onHide}>
             Закрыть
           </Button>
-          <Button variant="primary" onClick={onHide}>
+          <Button variant="primary" onClick={addInfo}>
             Добавить
           </Button>
         </Modal.Footer>
       </Modal>
   );
-};
+});
 
 export default CreatePost;
