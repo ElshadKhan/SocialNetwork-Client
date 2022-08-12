@@ -7,6 +7,8 @@ import UserPosts from "../components/UserPosts";
 import { Context } from "../index";
 
 const UserPage = () => {
+  const { user } = useContext(Context);
+  console.log(user.user.id)
   return (
     <Container>
       <Row>

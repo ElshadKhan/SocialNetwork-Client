@@ -8,13 +8,14 @@ import { check } from './http/userApi';
 import { Spinner } from 'react-bootstrap';
 
 const App = observer( () =>  {
-    const {user} = useContext(Context)
+    const {user, post} = useContext(Context)
     const [loading, setLoading] = useState(true)
 
     useEffect( () => {
         check().then(data => {
-            user.setUser(true)
+            // user.setUser(user.user.id)
             user.setIsAuth(true)
+            // console.log(post.selectedUser) 
         }).finally( () => setLoading(false))
     }, [])
 
