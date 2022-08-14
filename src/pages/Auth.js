@@ -25,13 +25,13 @@ const Auth = observer( () => {
               data = await login(email, password) 
               user.setIsAuth(true)
               user.setUser(data)
-              // post.setSelectedUser(data)
+              post.setSelectedUser(data)
               // console.log('datalogin to post', 
-              // post.selectedUser.username)
+              // post.selectedUser[1][0])
           } else {
               data = await registration(email, password, 
               username)
-              console.log('datalogin', data)
+              // console.log('datalogin', data)
               user.setIsAuth(true)
               user.setUser(data)
               // post.setSelectedUser(data)

@@ -1,10 +1,16 @@
 import { observer } from "mobx-react-lite";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Image, Card, Col, Row } from "react-bootstrap";
+import { fetchUserPosts } from "../http/postApi";
 import { Context } from "../index";
 
 const UserPosts = observer (() => {
-  const {post} = useContext(Context)
+  const {post, user} = useContext(Context)
+  const userId = user.user.id
+ 
+  useEffect(() => { 
+    fetchUserPosts(userId).then((data) => post.setPosts(data.reverse()));
+}, []); 
   return (
     <Row className="d-flex">
       {post.post.map(post =>

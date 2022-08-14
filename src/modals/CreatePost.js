@@ -5,20 +5,18 @@ import { Context } from "..";
 import { createPost } from "../http/postApi";
 
 const CreatePost = observer( ({show, onHide}) => {
-  const {post,user} = useContext(Context)
+  const {user} = useContext(Context)
   const [file, setFile] = useState(null)
   const [text, setText] = useState('')
-  const [username, setUsername] = useState(null)
-  const [info, setInfo] = useState([])
-
+ 
   const selectFile = e => {
     setFile(e.target.files[0])
   }
+  
   const addInfo = () => {
       const formData = new FormData()
       formData.append('content', text)
       formData.append('picture', file)
-      console.log(user.user.id)
       formData.append('userId', user.user.id) 
       createPost(formData).then(data => onHide())
   }

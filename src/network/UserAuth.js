@@ -9,8 +9,7 @@ export default class UserAuth {
     setIsAuth(bool) {
       this._isAuth = bool
     }
-    setUser(user) {
-      console.log('datalogin',user)
+    setUser(user) { 
       this._user = user
     }
 

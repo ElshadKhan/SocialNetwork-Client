@@ -23,6 +23,10 @@ export default class PostData {
       return this._post
     }
 
+    get getUserPosts() {
+      return this._post
+    }
+
     get selectedUser() {
       return this._selectedUser
     }

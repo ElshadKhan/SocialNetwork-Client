@@ -1,19 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, } from "react";
 import { observer } from "mobx-react-lite";
-import { Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Card, Container, ListGroup, Row } from "react-bootstrap";
 import { Context } from "../index";
-import { useParams } from "react-router-dom";
-import UserPosts from "../components/UserPosts";
 import { fetchPosts } from "../http/postApi";
 
 const PostPage = observer(() => {
-    const { post, user } = useContext(Context);
-    const username = post.selectedUser.username
-    console.log(user.user.id)
-   
+    const { post} = useContext(Context);  
+
     useEffect(() => {
         fetchPosts().then((data) => post.setPosts(data.reverse()));
   }, []);
+   console.log(post.post.picture)
   return (
     <Container>
       <Row className="d-flex justify-content-center">

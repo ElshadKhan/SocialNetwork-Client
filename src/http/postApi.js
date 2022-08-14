@@ -1,13 +1,15 @@
 import { $host } from './index'
 import jwt_decode from 'jwt-decode'
-// const {user} = useContext(Context)
 
 export const createPost = async (post) => {
     const {data} = await $host.post('api/post/create', post)
-    console.log(data)
     return data
 }
 export const fetchPosts = async () => {
-    const {data} = await $host.get('api/post/find')
+    const {data} = await $host.get('api/post/findAllPosts')
+    return data
+}
+export const fetchUserPosts = async (id) => {
+    const {data} = await $host.get('api/post/findAllUserPosts/' + id)
     return data
 }

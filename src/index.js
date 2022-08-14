@@ -4,9 +4,7 @@ import App from './App';
 import PostData from './network/PostData';
 import UserAuth from './network/UserAuth'; 
 
-export const Context = createContext(null)
-
-console.log(process.env.REACT_APP_API_URL)
+export const Context = createContext()
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(<Context.Provider

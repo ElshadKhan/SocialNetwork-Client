@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Context } from "..";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../index";
 import { Button, Container, Navbar } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
@@ -7,16 +7,25 @@ import { observer } from "mobx-react-lite";
 import { LOGIN_ROUTE, POSTS_ROUTE, USER_ROUTE } from "../utils/consts";
 import { useHistory } from "react-router-dom";
 import Auth from "../pages/Auth";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { check } from "../http/userApi";
 const NavBar = observer(() => {
-  const { user } = useContext(Context);
-  console.log(user.isAuth)
+  const { user, post } = useContext(Context);
   const history = useHistory();
+  // const [ userInfo, setUserInfo] = useState( {info: []})
+  // const id = useParams()
+  // console.log(id)
+  // useEffect( () => {
+  //   add().then(data => setUserInfo(data))
+  // })
 
   const logOut = () => {
     user.setUser({});
+    console.log(post.selectedUser)
+    post.setSelectedUser({});
+    console.log(post.selectedUser)
     user.setIsAuth(false);
     history.push(LOGIN_ROUTE);
-    console.log(user.user)
   };
 
   return (
@@ -35,9 +44,9 @@ const NavBar = observer(() => {
             </Button>
             <Button
               variant={"outline-light"}
-              onClick={() => history.push(USER_ROUTE + "/:id")}
+              onClick={() => history.push(USER_ROUTE + `/${user.user.id}`)}
             >
-              Пользовательская панель
+              Пользовательская панель 
             </Button>
             <Button
               variant={"outline-light"}

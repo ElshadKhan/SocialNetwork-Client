@@ -1,23 +1,23 @@
 import { observer } from "mobx-react-lite";
-import React, { useContext, useState } from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import React, { useContext, useEffect } from "react";
+import { Card, Col, Container, Image, ListGroup, Row } from "react-bootstrap";
 import AddPost from "../components/AddPost";
 import UserBar from "../components/UserBar";
-import UserPosts from "../components/UserPosts";
 import { Context } from "../index";
+import { fetchUserPosts } from "../http/postApi";
+import UserPosts from "../components/UserPosts";
 
 const UserPage = () => {
-  const { user } = useContext(Context);
-  console.log(user.user.id)
-  return (
+  
+  return ( 
     <Container>
       <Row>
-        <Col md={4}>
+        <Col md={4}> 
           <UserBar />
           <AddPost/>
         </Col>
         <Col md={8}>
-        <UserPosts/>
+          <UserPosts/>
         </Col>
       </Row>
     </Container>
