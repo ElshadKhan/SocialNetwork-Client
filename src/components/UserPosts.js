@@ -11,7 +11,8 @@ const UserPosts = observer (() => {
   useEffect(() => { 
     fetchUserPosts(userId).then((data) => post.setPosts(data.reverse()));
 }, []); 
-  return (
+
+  return ( 
     <Row className="d-flex">
       {post.post.map(post =>
     <Col md={6}>

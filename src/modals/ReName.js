@@ -2,40 +2,25 @@ import { observer } from "mobx-react-lite";
 import React, { useContext, useState } from "react";
 import { Button,  Modal, Form } from "react-bootstrap";
 import { Context } from "..";
-import { createPost } from "../http/postApi";
+import { updateUserLogin } from "../http/userApi";
 
-const CreatePost = observer( ({show, onHide}) => {
+const ReName = observer( ({show, onHide}) => {
   const {user} = useContext(Context)
-  const [file, setFile] = useState(null)
-  const [text, setText] = useState('')
- 
-  const selectFile = e => {
-    setFile(e.target.files[0])
-  }
+  const [username, setUsername] = useState('')
+  const id = user.user.id
   
   const addInfo = () => {
-      const formData = new FormData()
-      formData.append('content', text)
-      formData.append('picture', file)
-      formData.append('userId', user.user.id) 
-      createPost(formData).then(data => onHide())
+      const data = updateUserLogin(id, username)
   }
   return (
     <Modal show={show} onHide={onHide}>
         <Modal.Header closeButton>
-          <Modal.Title>Добавить пост</Modal.Title>
+          <Modal.Title>Изменить Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+        <Form>
             <Form.Group className="mb-3" 
             controlId="exampleForm.ControlInput1">
-              <Form.Label>Фотография</Form.Label>
-              <Form.Control
-                type="file"
-                onChange={selectFile}
-                placeholder="text"
-                autoFocus
-              />
             </Form.Group>
             <Form.Group
               className="mb-2"
@@ -44,8 +29,8 @@ const CreatePost = observer( ({show, onHide}) => {
               <Form.Label>Описание к фото</Form.Label>
               <Form.Control 
               as="textarea" 
-              value={text} 
-              onChange={e => setText(e.target.value)} 
+              value={username} 
+              onChange={e => setUsername(e.target.value)} 
               rows={2} />
             </Form.Group>
           </Form>
@@ -55,11 +40,11 @@ const CreatePost = observer( ({show, onHide}) => {
             Закрыть
           </Button>
           <Button variant="primary" onClick={addInfo}>
-            Добавить
+            Заменить
           </Button>
         </Modal.Footer>
       </Modal>
   );
 });
 
-export default CreatePost;
+export default ReName;

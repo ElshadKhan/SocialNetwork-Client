@@ -10,7 +10,7 @@ const PostPage = observer(() => {
     useEffect(() => {
         fetchPosts().then((data) => post.setPosts(data.reverse()));
   }, []);
-   console.log(post.post.picture)
+  
   return (
     <Container>
       <Row className="d-flex justify-content-center">

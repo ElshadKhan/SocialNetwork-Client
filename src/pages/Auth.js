@@ -9,14 +9,13 @@ import { login, registration } from "../http/userApi.js";
 import { Context } from "../index";
 
 const Auth = observer( () => {
-  const {user, post} = useContext(Context)
+  const {user} = useContext(Context)
   const location = useLocation();
   const history = useHistory();
   const isLogin = location.pathname === LOGIN_ROUTE;
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
-
 
   const click = async () => {
       try {
@@ -25,18 +24,10 @@ const Auth = observer( () => {
               data = await login(email, password) 
               user.setIsAuth(true)
               user.setUser(data)
-              post.setSelectedUser(data)
-              // console.log('datalogin to post', 
-              // post.selectedUser[1][0])
           } else {
-              data = await registration(email, password, 
-              username)
-              // console.log('datalogin', data)
+              data = await registration(email, password, username)
               user.setIsAuth(true)
               user.setUser(data)
-              // post.setSelectedUser(data)
-              // console.log('datalogin to post', data)
-
           }
           history.push(POSTS_ROUTE)
       } catch (error) {
@@ -44,6 +35,7 @@ const Auth = observer( () => {
       }
   }
     user.setIsAuth(false)
+
   return (
     <Container
       className="d-flex justify-content-center align-items-center"

@@ -1,5 +1,4 @@
 import { $host } from './index'
-import jwt_decode from 'jwt-decode'
 
 export const createPost = async (post) => {
     const {data} = await $host.post('api/post/create', post)

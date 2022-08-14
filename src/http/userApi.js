@@ -23,6 +23,6 @@ export const deleteUser = async (id)=> {
     return 
 }
 export const updateUserLogin = async (id, username)=> {
-    const {data} = await $host.delete('api/user/upadte/' + id, {username})
-    return 
+    const {data} = await $host.put('api/user/update/' + id, {username})
+    return data
 }
