@@ -21,9 +21,9 @@ const NavBar = observer(() => {
 
   const logOut = () => {
     user.setUser({});
-    console.log(post.selectedUser)
+    console.log(post.selectedUser);
     post.setSelectedUser({});
-    console.log(post.selectedUser)
+    console.log(post.selectedUser);
     user.setIsAuth(false);
     history.push(LOGIN_ROUTE);
   };
@@ -46,7 +46,7 @@ const NavBar = observer(() => {
               variant={"outline-light"}
               onClick={() => history.push(USER_ROUTE + `/${user.user.id}`)}
             >
-              Пользовательская панель 
+              Пользовательская панель
             </Button>
             <Button
               variant={"outline-light"}

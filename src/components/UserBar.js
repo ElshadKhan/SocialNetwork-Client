@@ -1,11 +1,11 @@
 import { observer } from "mobx-react-lite";
 import React, { useContext } from "react";
-import {Card, Container} from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import { Context } from "../index";
 
 const UserBar = observer(() => {
-  const { user } = useContext(Context)
-  const username  = user.user.username
+  const { user } = useContext(Context);
+  const username = user.user.username;
 
   return (
     <Container>

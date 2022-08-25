@@ -1,22 +1,22 @@
-import React, { useContext, useEffect, } from "react";
+import React, { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { Card, Container, ListGroup, Row } from "react-bootstrap";
 import { Context } from "../index";
 import { fetchPosts } from "../http/postApi";
 
 const PostPage = observer(() => {
-    const { post} = useContext(Context);  
+  const { post } = useContext(Context);
 
-    useEffect(() => {
-        fetchPosts().then((data) => post.setPosts(data.reverse()));
+  useEffect(() => {
+    fetchPosts().then((data) => post.setPosts(data.reverse()));
   }, []);
-  
+
   return (
     <Container>
       <Row className="d-flex justify-content-center">
         {post.post.map((post) => (
           <Card key={post.id} style={{ width: 600 }} className="p-3 mt-5 ">
-            <Card.Title>{post.userlogin}</Card.Title>
+            <Card.Title>{post.user.username}</Card.Title>
             <Card.Img
               variant="top"
               src={"http://localhost:5000/" + post.picture}
