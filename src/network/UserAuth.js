@@ -1,4 +1,5 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
+
 export default class UserAuth {
   constructor() {
     this._isAuth = false;
@@ -9,6 +10,7 @@ export default class UserAuth {
   setIsAuth(bool) {
     this._isAuth = bool;
   }
+
   setUser(user) {
     this._user = user;
   }
@@ -16,6 +18,7 @@ export default class UserAuth {
   get isAuth() {
     return this._isAuth;
   }
+
   get user() {
     return this._user;
   }

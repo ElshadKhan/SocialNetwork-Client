@@ -1,4 +1,6 @@
-import Auth from "../pages/Auth.js";
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default-member */
+import Auth from "../pages/Auth";
 import PostPage from "../pages/PostPage";
 import UserPage from "../pages/UserPage";
 import {
@@ -10,7 +12,7 @@ import {
 
 export const authRoutes = [
   {
-    path: USER_ROUTE + "/:id",
+    path: `${USER_ROUTE}/:id`,
     Component: UserPage,
   },
   {
